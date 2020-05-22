@@ -1,0 +1,39 @@
+name: Deploy AWS Lambda
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12'
+        
+    - uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    
+    - name: Install serverless framework
+      run: npm install -g serverless
+    
+    - run: npm install
+
+    - name: Serverless deploy
+      run: serverless deploy --region eu-west-3
+        
+      env:
+        TGVMAX_LOGIN: ${{ secrets.TGVMAX_LOGIN }}  
+        TGVMAX_PWD: ${{ secrets.TGVMAX_PWD }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        MATRIX_ROOM: ${{ secrets.MATRIX_ROOM }}
+        MATRIX_USER: ${{ secrets.MATRIX_USER }}
+        MATRIX_TOKEN: ${{ secrets.MATRIX_TOKEN }}

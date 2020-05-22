@@ -1,0 +1,22 @@
+service: tgvmax-autoconfirm
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+region: eu-west-3
+
+functions:
+  hello:
+    handler: handler.autoconfirm
+    timeout: 60
+    memorySize: 600
+    events:
+      - schedule: rate(10 hours)
+
+    environment:
+      TGVMAX_LOGIN: ${env:TGVMAX_LOGIN}
+      TGVMAX_PWD: ${env:TGVMAX_PWD}
+      MATRIX_TOKEN: ${env:MATRIX_TOKEN}
+      MATRIX_ROOM: ${env:MATRIX_ROOM}
+      MATRIX_USER: ${env:MATRIX_USER}

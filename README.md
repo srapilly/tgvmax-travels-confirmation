@@ -1,4 +1,4 @@
-![Deploy AWS Lambda](https://github.com/simonrply/tgvmax-auto-confirm/workflows/Deploy%20AWS%20Lambda/badge.svg)
+![Deploy AWS Lambda](https://github.com/varsq/tgvmax-aws-lambda-confirmation/workflows/Deploy%20AWS%20Lambda/badge.svg)
 
 #### What is it ?
 

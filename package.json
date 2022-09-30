@@ -4,7 +4,7 @@
   "dependencies": {
     "chrome-aws-lambda": "~3.1.0",
     "puppeteer-core": "~3.1.0",
-    "matrix-js-sdk": "~6.1.0"
+    "matrix-js-sdk": "~19.7.0"
   },
   "devDependencies": {
     "puppeteer": "~3.1.0"
